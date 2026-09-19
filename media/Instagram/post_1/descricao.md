@@ -1,0 +1,1 @@
+Uma publicação que destaca os diferenciais da clínica em relação a concorrência ou demais prestadores do mesmo serviço (Não com o intuito de comparar, somente auto promoção típica e justa do mercado)

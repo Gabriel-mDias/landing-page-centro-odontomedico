@@ -1,23 +1,34 @@
 export const SITE_CONFIG = {
   brand: {
-    name: 'Clínica Aurora',
-    legalName: 'EMPRESA DEMONSTRATIVA — substitua antes de publicar',
-    niche: 'Clínica médica multidisciplinar',
-    city: 'Vitória',
-    state: 'ES'
+    name: 'Centro Odontomédico',
+    legalName: null,
+    niche: 'Odontologia multidisciplinar',
+    city: 'Bom Jesus do Itabapoana',
+    state: 'RJ'
   },
   contact: {
-    whatsapp: '5527999999999',
-    whatsappLabel: '(27) 99999-9999',
-    whatsappMessage: 'Olá! Conheci a Clínica Aurora pelo site e gostaria de agendar uma consulta.',
-    email: 'contato@clinicaaurora.example',
-    instagram: 'clinicaaurora.exemplo',
-    instagramUrl: 'https://www.instagram.com/',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Vitória+ES'
+    whatsapp: '5522998155861',
+    whatsappLabel: '(22) 99815-5861',
+    whatsappMessage: 'Olá! Conheci o Centro Odontomédico pelo site e gostaria de agendar uma consulta.',
+    phone: '552238311733',
+    phoneLabel: '(22) 3831-1733',
+    address: 'Rua XV de Novembro, 360, Centro, Bom Jesus do Itabapoana - RJ, 28360-000',
+    instagram: 'centroodontomedico_',
+    instagramUrl: 'https://www.instagram.com/centroodontomedico_/',
+    mapsUrl: 'https://share.google/fBMa2KjSdsbvcKEAP',
+    email: null
+  },
+  media: {
+    heroVideo: './assets/video/hero_1.mp4',
+    heroPoster: './assets/video/hero_1_poster.jpg',
+    experienceVideo: './assets/video/hero_2_scrub.mp4',
+    experienceMobileVideo: './assets/video/hero_2.mp4',
+    experiencePoster: './assets/video/hero_2_poster.jpg',
+    casesCatalog: './assets/cases/cases.json'
   },
   form: {
-    provider: 'web3forms',
+    provider: 'whatsapp',
     accessKey: '',
-    subject: 'Novo contato pelo site — Clínica Aurora'
+    subject: 'Novo contato pelo site — Centro Odontomédico'
   }
 };

@@ -1,0 +1,3 @@
+ - Baixa resolução;
+ - A [versão 1](./logo_1.jpg) da logo é em comemoração aos 20 anos. Por isso, está com formato comemorativo;
+ - A [versão 2](./logo_2.png) da logo é o png definitivo, e a sua [versão .svg](./logo_2.svg) precisa de um tratamento em detalhes.

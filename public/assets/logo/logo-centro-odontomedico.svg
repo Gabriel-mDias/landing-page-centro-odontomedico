@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">Símbolo do Centro Odontomédico</title>
+  <g fill="none" stroke="#C6A15B" stroke-width="9" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="128" cy="128" rx="102" ry="70" transform="rotate(38 128 128)"/>
+    <ellipse cx="128" cy="128" rx="102" ry="70" transform="rotate(-38 128 128)"/>
+    <ellipse cx="128" cy="128" rx="104" ry="83"/>
+  </g>
+  <path fill="#C6A15B" d="M128 83c-19-17-50-11-55 16-5 29 18 46 38 63 7 6 12 13 17 21 5-8 10-15 17-21 20-17 43-34 38-63-5-27-36-33-55-16Z"/>
+  <path fill="#C6A15B" d="M99 149c9 9 18 17 26 29-7 7-12 15-17 25-3 6-12 4-13-3-2-16 0-34 4-51Zm58 0c-9 9-18 17-26 29 7 7 12 15 17 25 3 6 12 4 13-3 2-16 0-34-4-51Z" opacity=".92"/>
+</svg>
