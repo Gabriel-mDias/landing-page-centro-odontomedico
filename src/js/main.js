@@ -9,6 +9,7 @@ import { initDialog } from './modules/detail-dialog.js';
 import { initProfessionalPreview } from './modules/professional-preview.js';
 import { initSpecialties } from './modules/specialties.js';
 import { initCases } from './modules/cases.js';
+import { initBeforeAfter } from './modules/before-after.js';
 
 async function bootstrap() {
   initDialog();
@@ -20,6 +21,7 @@ async function bootstrap() {
   initScrollVideo();
   await initProfessionalPreview();
   initSpecialties();
+  initBeforeAfter();
   await initCases();
 }
 

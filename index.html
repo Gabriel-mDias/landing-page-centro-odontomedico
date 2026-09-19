@@ -99,6 +99,69 @@
       </div>
     </section>
 
+    <section class="section dental-result" id="resultados" aria-labelledby="results-title">
+      <div class="container">
+        <header class="section-heading" data-reveal>
+          <p class="eyebrow">Resultados</p>
+          <h2 id="results-title">Transformações que você pode ver.</h2>
+          <p>Arraste para comparar o antes e o depois.</p>
+        </header>
+
+        <div class="before-after" data-before-after>
+          <!-- Imagem base: Antes -->
+          <img
+            class="before-after__image before-after__image--before"
+            src="./assets/images/clareamento-antes.webp"
+            alt="Sorriso antes do clareamento dental"
+            width="1448"
+            height="1086"
+            loading="lazy"
+            draggable="false"
+          >
+
+          <!-- Imagem revelada: Depois -->
+          <img
+            class="before-after__image before-after__image--after"
+            src="./assets/images/clareamento-depois.webp"
+            alt="Sorriso após o clareamento dental"
+            width="1448"
+            height="1086"
+            loading="lazy"
+            draggable="false"
+          >
+
+          <!-- Badges de identificação -->
+          <span class="before-after__label before-after__label--before" aria-hidden="true">Antes</span>
+          <span class="before-after__label before-after__label--after" aria-hidden="true">Depois</span>
+
+          <!-- Controle interativo -->
+          <div
+            class="before-after__handle"
+            role="slider"
+            tabindex="0"
+            aria-label="Comparar antes e depois do clareamento"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="50"
+          >
+            <div class="before-after__line" aria-hidden="true"></div>
+            <div class="before-after__button" aria-hidden="true">
+              <svg class="before-after__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              <svg class="before-after__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <p class="dental-result__disclaimer">
+          Resultado individual. Os resultados podem variar de acordo com cada caso clínico.
+        </p>
+      </div>
+    </section>
+
     <section class="section team" id="equipe" aria-labelledby="team-title">
       <div class="container team-heading" data-reveal>
         <div class="section-heading">
