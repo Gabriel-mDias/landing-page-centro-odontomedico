@@ -107,23 +107,108 @@
           <p>Arraste para comparar o antes e o depois.</p>
         </header>
 
-        <div class="before-after" data-before-after>
-          <!-- Imagem base: Antes -->
+        <div class="before-after__tabs" role="tablist" aria-label="Casos clínicos disponíveis" data-before-after-tabs>
+          <button
+            type="button"
+            class="before-after__tab is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="before-after-display"
+            id="tab-case-1"
+            data-case-id="clareamento-1"
+            data-antes-src="./assets/images/clareamento-antes.webp"
+            data-depois-src="./assets/images/clareamento-depois.webp"
+            data-antes-alt="Sorriso antes do clareamento dental - Caso 01"
+            data-depois-alt="Sorriso após o clareamento dental - Caso 01"
+            data-aspect="landscape"
+          >
+            Clareamento 01
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-2"
+            data-case-id="clareamento-2"
+            data-antes-src="./assets/images/clareamento-2-antes.webp"
+            data-depois-src="./assets/images/clareamento-2-depois.webp"
+            data-antes-alt="Sorriso antes do clareamento dental - Caso 02"
+            data-depois-alt="Sorriso após o clareamento dental - Caso 02"
+            data-aspect="portrait"
+          >
+            Clareamento 02
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-3"
+            data-case-id="preenchimento-labial-1"
+            data-antes-src="./assets/images/preenchimento-labial-1-antes.webp"
+            data-depois-src="./assets/images/preenchimento-labial-1-depois.webp"
+            data-antes-alt="Lábios antes do preenchimento labial - Caso 01"
+            data-depois-alt="Lábios após o preenchimento labial - Caso 01"
+            data-aspect="panoramic"
+          >
+            Preenchimento Labial 01
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-4"
+            data-case-id="preenchimento-labial-2"
+            data-antes-src="./assets/images/preenchimento-labial-2-antes.webp"
+            data-depois-src="./assets/images/preenchimento-labial-2-depois.webp"
+            data-antes-alt="Lábios antes do preenchimento labial - Caso 02"
+            data-depois-alt="Lábios após o preenchimento labial - Caso 02"
+            data-aspect="panoramic"
+          >
+            Preenchimento Labial 02
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-5"
+            data-case-id="rinomodelacao-1"
+            data-antes-src="./assets/images/rinomodelacao-antes.webp"
+            data-depois-src="./assets/images/rinomodelacao-depois.webp"
+            data-antes-alt="Perfil nasal antes da rinomodelação"
+            data-depois-alt="Perfil nasal após a rinomodelação"
+            data-aspect="portrait"
+          >
+            Rinomodelação
+          </button>
+        </div>
+
+        <div class="before-after" id="before-after-display" data-before-after tabindex="-1">
+          <!-- Imagem base (à direita): DEPOIS -->
           <img
-            class="before-after__image before-after__image--before"
-            src="./assets/images/clareamento-antes.webp"
-            alt="Sorriso antes do clareamento dental"
+            class="before-after__image before-after__image--base"
+            data-image-base
+            src="./assets/images/clareamento-depois.webp"
+            alt="Sorriso após o clareamento dental - Caso 01"
             width="1448"
             height="1086"
             loading="lazy"
             draggable="false"
           >
 
-          <!-- Imagem revelada: Depois -->
+          <!-- Imagem revelada à esquerda com clip-path: ANTES -->
           <img
-            class="before-after__image before-after__image--after"
-            src="./assets/images/clareamento-depois.webp"
-            alt="Sorriso após o clareamento dental"
+            class="before-after__image before-after__image--reveal"
+            data-image-reveal
+            src="./assets/images/clareamento-antes.webp"
+            alt="Sorriso antes do clareamento dental - Caso 01"
             width="1448"
             height="1086"
             loading="lazy"
@@ -139,7 +224,7 @@
             class="before-after__handle"
             role="slider"
             tabindex="0"
-            aria-label="Comparar antes e depois do clareamento"
+            aria-label="Comparar antes e depois"
             aria-valuemin="0"
             aria-valuemax="100"
             aria-valuenow="50"

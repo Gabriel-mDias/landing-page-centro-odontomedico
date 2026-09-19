@@ -1,7 +1,7 @@
 /**
  * Before/After Image Comparison Slider
  * Precision clinical comparison with Pointer Events, ARIA slider accessibility,
- * and gentle entrance micro-interaction.
+ * multi-case tabs support, and entrance micro-interaction.
  */
 
 export function initBeforeAfter() {
@@ -12,6 +12,8 @@ export function initBeforeAfter() {
 
   comparisons.forEach((container) => {
     const handle = container.querySelector('.before-after__handle');
+    const imageBase = container.querySelector('[data-image-base]');
+    const imageReveal = container.querySelector('[data-image-reveal]');
     if (!handle) return;
 
     let dragging = false;
@@ -39,9 +41,52 @@ export function initBeforeAfter() {
       setPosition(percentage);
     };
 
+    // Tab switcher for multiple clinical cases
+    const tabsContainer = container.closest('section')?.querySelector('[data-before-after-tabs]');
+    if (tabsContainer) {
+      const tabs = tabsContainer.querySelectorAll('.before-after__tab');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          if (tab.classList.contains('is-active')) return;
+
+          userInteracted = true;
+          cancelTeaser();
+
+          tabs.forEach((t) => {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+
+          const { antesSrc, depoisSrc, antesAlt, depoisAlt, aspect } = tab.dataset;
+
+          // Swap images: base (right side) shows Depois; reveal (left side) shows Antes
+          if (imageBase && depoisSrc) {
+            imageBase.src = depoisSrc;
+            if (depoisAlt) imageBase.alt = depoisAlt;
+          }
+          if (imageReveal && antesSrc) {
+            imageReveal.src = antesSrc;
+            if (antesAlt) imageReveal.alt = antesAlt;
+          }
+
+          // Dynamic aspect ratio adjustment
+          container.classList.remove('before-after--portrait', 'before-after--panoramic');
+          if (aspect === 'portrait') {
+            container.classList.add('before-after--portrait');
+          } else if (aspect === 'panoramic') {
+            container.classList.add('before-after--panoramic');
+          }
+
+          // Reset comparison to 50%
+          setPosition(50);
+        });
+      });
+    }
+
     // Pointer events for mouse & touch
     container.addEventListener('pointerdown', (event) => {
-      // Primary button or touch only
       if (event.button !== 0 && event.pointerType === 'mouse') return;
 
       userInteracted = true;
@@ -53,7 +98,7 @@ export function initBeforeAfter() {
       try {
         container.setPointerCapture(event.pointerId);
       } catch {
-        // Fallback for browsers with strict pointer capture constraints
+        // Fallback for strict browser constraints
       }
 
       updateFromClientX(event.clientX);
@@ -125,8 +170,7 @@ export function initBeforeAfter() {
           const elapsed = now - startTime;
           const progress = Math.min(elapsed / duration, 1);
 
-          // Smooth sine oscillation: sin(2 * PI * progress) decaying gently
-          // Amplitude is ~6% (oscillation between 44% and 56%)
+          // Smooth sine oscillation
           const oscillation = Math.sin(progress * Math.PI * 2) * (1 - progress * 0.4);
           const currentPos = 50 + oscillation * 6;
 
@@ -148,7 +192,6 @@ export function initBeforeAfter() {
           entries.forEach((entry) => {
             if (entry.isIntersecting && !userInteracted) {
               observer.unobserve(container);
-              // Small delay for natural entrance feel
               setTimeout(runTeaser, 250);
             }
           });
