@@ -9,7 +9,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { overflow-x: hidden; scroll-behavior: smooth; color-scheme: dark; }
 body { margin: 0; overflow-x: hidden; color: var(--text); background: var(--bg); font-family: var(--font); line-height: 1.65; }
-body.is-dialog-open { overflow: hidden; }
+html.is-dialog-open, html:has(body.is-dialog-open), body.is-dialog-open { overflow: hidden; }
 button, input, select { font: inherit; }
 img, video { display: block; max-width: 100%; }
 a { color: inherit; }

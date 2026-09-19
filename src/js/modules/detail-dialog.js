@@ -12,7 +12,9 @@ export function initDialog() {
     if (event.target === dialog) dialog.close();
   });
   dialog.addEventListener('close', () => {
+    document.documentElement.classList.remove('is-dialog-open');
     document.body.classList.remove('is-dialog-open');
+    dialog.className = 'detail-dialog';
     content.querySelectorAll('video').forEach((video) => {
       video.pause();
       video.removeAttribute('src');
@@ -24,11 +26,13 @@ export function initDialog() {
   });
 }
 
-export function openDetail({ trigger, html, onOpen }) {
+export function openDetail({ trigger, html, onOpen, variant }) {
   if (!dialog || !content) initDialog();
   if (!dialog || !content) return;
   opener = trigger || document.activeElement;
+  dialog.className = 'detail-dialog' + (variant ? ` detail-dialog--${variant}` : '');
   content.innerHTML = html;
+  document.documentElement.classList.add('is-dialog-open');
   document.body.classList.add('is-dialog-open');
   dialog.showModal();
   dialog.querySelector('[data-dialog-close]')?.focus();

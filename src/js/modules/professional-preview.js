@@ -19,13 +19,32 @@ function openProfessional(id, trigger) {
   const whatsapp = `https://wa.me/${SITE_CONFIG.contact.whatsapp}?text=${encodeURIComponent(message)}`;
   openDetail({
     trigger,
+    variant: 'professional',
     html: `
-      <img class="dialog-image" src="./assets/team/${encodeURIComponent(person.imagem)}" alt="${escapeHtml(person.nome_exibicao)}">
-      <span class="dialog-kicker">Corpo clínico</span>
-      <h2 id="detail-title">${escapeHtml(name)}</h2>
-      <p>${escapeHtml(person.descricao)}</p>
-      <ul class="dialog-list">${person.funcoes.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
-      <a class="button" href="${whatsapp}" target="_blank" rel="noopener noreferrer">Agendar Consulta</a>
+      <div class="dialog-professional">
+        <div class="dialog-professional__media">
+          <img class="dialog-professional__image" src="./assets/team/${encodeURIComponent(person.imagem)}" alt="${escapeHtml(person.nome_exibicao)}" loading="eager" width="600" height="750">
+        </div>
+        <div class="dialog-professional__body">
+          <div class="dialog-professional__intro">
+            <span class="dialog-kicker">Corpo clínico</span>
+            <h2 id="detail-title" class="dialog-professional__title">${escapeHtml(name)}</h2>
+            <p class="dialog-professional__desc">${escapeHtml(person.descricao)}</p>
+          </div>
+          <div class="dialog-professional__details">
+            <h3 class="dialog-professional__subtitle">Especialidades &amp; Atuação</h3>
+            <ul class="dialog-professional__list">
+              ${person.funcoes.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="dialog-professional__footer">
+            <a class="button button--gold dialog-professional__cta" href="${whatsapp}" target="_blank" rel="noopener noreferrer">
+              <span>Agendar Consulta</span>
+              <svg width="18" height="18" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M200 128a8 8 0 0 1-8 8H75.31l34.35 34.34a8 8 0 0 1-11.32 11.32l-48-48a8 8 0 0 1 0-11.32l48-48a8 8 0 0 1 11.32 11.32L75.31 120H192a8 8 0 0 1 8 8Z" transform="rotate(180 128 128)"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
     `
   });
 }
@@ -40,7 +59,7 @@ export async function initProfessionalPreview() {
     professionals = Array.isArray(data.funcionarios) ? data.funcionarios : [];
     wrapper.innerHTML = professionals.map((person, index) => `
       <div class="swiper-slide">
-        <article class="team-card">
+        <article class="team-card" data-card-id="${escapeHtml(person.id)}">
           <div class="team-card__image-box">
             <img class="team-card__image" src="./assets/team/${encodeURIComponent(person.imagem)}" alt="${escapeHtml(person.nome_exibicao)}" loading="lazy" width="520" height="650">
             <button class="team-card__action" type="button" data-open-professional="${escapeHtml(person.id)}" aria-label="Ver perfil: ${escapeHtml(person.nome_exibicao)}">
@@ -52,6 +71,16 @@ export async function initProfessionalPreview() {
         </article>
       </div>
     `).join('');
+
+    wrapper.querySelectorAll('.team-card').forEach((card) => {
+      const button = card.querySelector('[data-open-professional]');
+      if (!button) return;
+      card.addEventListener('click', (event) => {
+        if (!event.target.closest('[data-open-professional]')) {
+          button.click();
+        }
+      });
+    });
 
     wrapper.querySelectorAll('[data-open-professional]').forEach((button) => {
       button.addEventListener('click', () => openProfessional(button.dataset.openProfessional, button));
