@@ -27,6 +27,7 @@ seo_estado: confirmado
 
 - Responsável pela aprovação: Usuário
 - Data de aprovação da revisão: 2026-09-19
+- Revisão aprovada: a jornada do cuidado passa a usar quatro painéis editoriais em zigue-zague, em fluxo normal, sem cena sticky, órbitas ou progressão controlada por scroll.
 - Arquétipo primário: institucional, apresentando posicionamento, capacidade clínica e reputação confirmada.
 - Objetivo: agendamentos pelo WhatsApp.
 - CTA único: “Agendar Consulta”.
@@ -64,7 +65,7 @@ seo_estado: confirmado
 | Ativo | Arquivo | Estado | Escopo |
 |---|---|---|---|
 | Hero | `media/Instagram/hero_1/hero_1.mp4` | confirmado | autorizado para a página |
-| Experiência | `media/Instagram/hero_2/sugestao_hero_2.mp4` | confirmado | autorizado para a página |
+| Jornada | quatro fotografias de `media/home`: retrato do Dr. Mayson, recepção e dois consultórios | confirmado | acervo indicado pelo usuário para a seção; seleção aprovada por tópico nesta revisão |
 | Equipe | `media/funcionarios/` | confirmado | autorizado para a página |
 | Casos clínicos | oito conjuntos em `media/Instagram/` | bloqueado | preparar tecnicamente; não publicar sem autoria, CRO e TCLE por caso |
 | Símbolo | `media/Instagram/logo_1/logo_2.png` | confirmado | reconstrução vetorial fiel autorizada |

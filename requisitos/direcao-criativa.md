@@ -66,7 +66,7 @@ aprovado_em: 2026-09-19
 
 1. Hero híbrida assimétrica.
 2. Faixa de prova.
-3. Experiência clínica em vídeo.
+3. “Jornada do cuidado”: quatro painéis editoriais em zigue-zague, em fluxo normal, com fotografias derivadas de mídia própria autorizada.
 4. Especialidades em índice interativo.
 5. Equipe em carrossel de largura variável.
 6. Casos clínicos tecnicamente prontos, mas não renderizados enquanto incompletos.
@@ -101,8 +101,17 @@ A navegação permanece fora da contagem e conserva as âncoras `#hero`, `#jorna
 - Especialidades: hover/foco atualiza painel no desktop; ativação abre detalhe; “Ver detalhes” permanece visível no mobile.
 - Equipe: scroll fluido, controles acessíveis, ação permanente no mobile e Eye da linguagem Phosphor no desktop.
 - Detalhes: controlador compartilhado com `<dialog>`, painel lateral à direita no desktop e tela cheia no mobile.
-- Experiência em vídeo: scrub só em tela adequada; mídia proporcional e conteúdo em fluxo nas demais condições.
+- Jornada: quatro painéis editoriais em fluxo normal; imagem e texto alternam os lados no desktop e tablet, enquanto no mobile o texto ocupa o fade escuro na base da fotografia. Há somente fade de entrada pelo sistema global, sem pinning, scrub, parallax, órbitas, contador ou troca de mídia por scroll.
 - Movimento reduzido: sem smooth scroll, scrub, parallax ou autoplay.
+
+## Jornada do cuidado
+
+- Introdução: “A jornada do cuidado”.
+- Título: “Tudo começa quando você é ouvido.”
+- Sequência aprovada: Escuta / Presença, Direcionamento / Clareza, Cuidado integrado / Integração e Continuidade / Responsabilidade.
+- Seleção visual aprovada por tópico a partir de `media/home`: retrato atento do Dr. Mayson em Escuta; recepção em Direcionamento; consultório com áreas de conversa e atendimento em Cuidado integrado; e consultório preparado em Continuidade.
+- Os derivados 4:3 preservam AVIF/WebP, lazy loading e recorte responsivo; no mobile, o enquadramento central mantém o assunto legível sob o fade escuro.
+- Nenhum vídeo antigo do sorriso integra ou é requisitado pela seção.
 
 ## Casos clínicos
 
@@ -110,4 +119,4 @@ O catálogo e os derivados MP4/WebM/poster serão entregues, mas a seção perma
 
 ## Aprovação formal
 
-A revisão editorial clínica, sua paleta, Manrope, frase central, hero híbrida, reconstrução fiel do símbolo, ordem de seções e CTA “Agendar Consulta” foram aprovadas pelo usuário em 19/09/2026.
+A revisão editorial clínica, sua paleta, Manrope, frase central, hero híbrida, reconstrução fiel do símbolo, ordem de seções, CTA “Agendar Consulta” e a substituição da cena orbital pela jornada em zigue-zague foram aprovadas pelo usuário em 19/09/2026.

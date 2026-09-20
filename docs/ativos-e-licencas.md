@@ -11,6 +11,10 @@ Inventário revisado em 19/09/2026 para a direção editorial clínica aprovada.
 | `public/assets/video/hero_1_poster.jpg` | vídeo da hero | poster estático | autorizado |
 | `public/assets/video/hero_2_scrub.mp4` | `media/Instagram/hero_2/sugestao_hero_2.mp4` | sem áudio, 30 fps, GOP curto para scrub | autorizado |
 | `public/assets/video/hero_2.mp4` | mesma origem | versão proporcional para telas menores | autorizado |
+| `public/assets/journey/escuta.{avif,webp}` | `media/home/dr_mayson_com_atencao.png` | recorte 4:3 do retrato atento do Dr. Mayson; presença e escuta | autorizado pelo usuário para a seção de cultura/jornada |
+| `public/assets/journey/direcionamento.{avif,webp}` | `media/home/recepção.png` | recorte 4:3 da recepção; acolhimento e orientação inicial | autorizado pelo usuário para a seção de cultura/jornada |
+| `public/assets/journey/integracao.{avif,webp}` | `media/home/consultorio_2.png` | recorte 4:3 do consultório com áreas de conversa e atendimento; integração | autorizado pelo usuário para a seção de cultura/jornada |
+| `public/assets/journey/continuidade.{avif,webp}` | `media/home/consultorio_1.png` | recorte 4:3 do consultório preparado; continuidade do cuidado | autorizado pelo usuário para a seção de cultura/jornada |
 | `public/assets/team/*` | `media/funcionarios/*` | cópias fornecidas para o corpo clínico | autorizado para a página |
 | `public/assets/fonts/manrope-latin-wght-normal.woff2` | Fontsource, família Manrope | arquivo variável latino auto-hospedado | SIL Open Font License 1.1 |
 
@@ -35,6 +39,7 @@ Os derivados são silenciosos, 30 fps, com dimensão máxima de 1080px, reprodu�
 
 - Não há autorização de domínio, deploy, analytics ou serviço externo de formulário.
 - Contatos e caminhos de mídia publicados vêm de `SITE_CONFIG`.
+- Os quatro derivados da jornada têm 720 × 540 px, AVIF/WebP e menos de 50 KB cada. Vieram do acervo `media/home`, fornecido pelo usuário para esta seção, não vêm do Google Maps e não exibem pacientes. O retrato identifica o Dr. Mayson conforme a indicação explícita do usuário.
 - O site permanece com `noindex,nofollow` até uma autorização de publicação separada.
 - Nenhum e-mail, horário, CRO ou claim não confirmado foi publicado.
 

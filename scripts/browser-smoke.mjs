@@ -1,5 +1,5 @@
 import { chromium } from 'playwright-core';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -12,6 +12,11 @@ const candidates = [
 ];
 const executablePath = candidates.find(existsSync);
 if (!executablePath) throw new Error('Chrome/Chromium não encontrado para o smoke test local.');
+
+const mainSource = readFileSync('src/js/main.js', 'utf8');
+const journeyStyles = readFileSync('src/styles/components.css', 'utf8');
+if (existsSync('src/js/modules/journey.js') || /initJourney|modules\/journey/.test(mainSource)) throw new Error('controlador dedicado da jornada ainda está presente');
+if (/journey-(?:sticky|orbit|glass|core|visual)|journey\.is-enhanced/.test(journeyStyles)) throw new Error('CSS da antiga cena orbital/sticky ainda está presente');
 
 const browser = await chromium.launch({ executablePath, headless: true });
 const cases = [
@@ -36,15 +41,33 @@ try {
     const page = await context.newPage();
     const errors = [];
     const externalFonts = [];
+    const oldJourneyMedia = [];
+    await page.addInitScript(() => {
+      window.__pageQuality = { cls: 0, longestTask: 0 };
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) if (!entry.hadRecentInput) window.__pageQuality.cls += entry.value;
+      }).observe({ type: 'layout-shift', buffered: true });
+      new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) window.__pageQuality.longestTask = Math.max(window.__pageQuality.longestTask, entry.duration);
+      }).observe({ type: 'longtask', buffered: true });
+    });
     await page.route(/fonts\.(googleapis|gstatic)\.com/, async (route) => {
       externalFonts.push(route.request().url());
       await route.abort();
     });
     page.on('pageerror', (error) => errors.push(error.message));
     page.on('console', (message) => { if (message.type() === 'error') errors.push(message.text()); });
+    page.on('request', (request) => {
+      if (/culture_smile|hero_2_(?:scrub|poster)/.test(request.url())) oldJourneyMedia.push(request.url());
+    });
 
     await page.goto(baseUrl, { waitUntil: 'networkidle' });
     await page.locator('#team-wrapper .team-card').first().waitFor();
+    await page.evaluate(() => { window.__pageQuality.longestTask = 0; });
+    for (const step of await page.locator('[data-journey-step]').all()) {
+      await step.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(80);
+    }
     for (const section of await page.locator('main > section:not([hidden])').all()) {
       await section.scrollIntoViewIfNeeded();
       await page.waitForTimeout(80);
@@ -54,13 +77,31 @@ try {
     const result = await page.evaluate(() => ({
       innerWidth: window.innerWidth,
       scrollWidth: document.documentElement.scrollWidth,
-      imagesBroken: [...document.images].filter((image) => image.currentSrc && (!image.complete || image.naturalWidth === 0)).length,
+      imagesBroken: [...document.images].filter((image) => image.currentSrc && image.getClientRects().length > 0 && (!image.complete || image.naturalWidth === 0)).length,
       h1Count: document.querySelectorAll('h1').length,
       menuDisplay: getComputedStyle(document.querySelector('[data-menu-button]')).display,
       font: getComputedStyle(document.body).fontFamily,
       manropeLoaded: document.fonts.check('16px Manrope'),
       casesHidden: document.querySelector('[data-cases-section]').hidden,
       heroSource: document.querySelector('[data-hero-video]').getAttribute('src') || '',
+      journeySteps: document.querySelectorAll('[data-journey-step]').length,
+      journeyOrder: [...document.querySelectorAll('[data-journey-step]')].map((step) => step.dataset.journeyStep).join(','),
+      journeyLayout: [...document.querySelectorAll('[data-journey-step]')].map((step) => {
+        const image = step.querySelector('.journey-step-image').getBoundingClientRect();
+        const content = step.querySelector('.journey-step-content').getBoundingClientRect();
+        return {
+          imageCenter: image.left + image.width / 2,
+          contentCenter: content.left + content.width / 2,
+          overlaps: image.left < content.right && image.right > content.left && image.top < content.bottom && image.bottom > content.top,
+          position: getComputedStyle(step).position,
+          opacity: Number(getComputedStyle(step).opacity)
+        };
+      }),
+      journeyImagesLazy: [...document.querySelectorAll('[data-journey-step] img')].every((image) => image.loading === 'lazy' && image.getAttribute('width') === '720' && image.getAttribute('height') === '540'),
+      oldJourneyHooks: document.querySelectorAll('[data-journey-image], [data-journey-counter], [data-journey-visual], .is-enhanced').length,
+      journeyStickyDescendants: [...document.querySelectorAll('[data-journey], [data-journey] *')].filter((element) => getComputedStyle(element).position === 'sticky').length,
+      cls: window.__pageQuality?.cls || 0,
+      longestTask: window.__pageQuality?.longestTask || 0,
       headingsOutside: [...document.querySelectorAll('h1,h2')].filter((heading) => {
         const rect = heading.getBoundingClientRect();
         return rect.left < -1 || rect.right > window.innerWidth + 1;
@@ -72,16 +113,29 @@ try {
     if (result.h1Count !== 1) errors.push(`esperado 1 H1, encontrado ${result.h1Count}`);
     if (!result.manropeLoaded || !result.font.includes('Manrope')) errors.push('Manrope auto-hospedada não foi aplicada');
     if (!result.casesHidden) errors.push('casos clínicos incompletos foram renderizados');
+    if (result.journeySteps !== 4) errors.push(`jornada: esperadas 4 etapas, encontradas ${result.journeySteps}`);
+    if (result.journeyOrder !== '0,1,2,3') errors.push(`ordem da jornada incorreta: ${result.journeyOrder}`);
+    if (!result.journeyImagesLazy) errors.push('jornada: dimensões ou lazy loading das imagens incorretos');
+    if (result.oldJourneyHooks) errors.push('jornada: hooks da antiga cena dinâmica ainda presentes');
+    if (result.journeyStickyDescendants) errors.push('jornada: position sticky ainda presente');
+    if (result.journeyLayout.some((step) => step.position === 'sticky' || step.opacity === 0)) errors.push('jornada: painel sticky ou invisível');
+    if (result.cls >= 0.1) errors.push(`CLS acima do orçamento: ${result.cls.toFixed(3)}`);
+    if (result.longestTask > 50) errors.push(`tarefa longa durante a interação: ${result.longestTask.toFixed(1)}ms`);
+    if (oldJourneyMedia.length) errors.push('jornada requisitou mídia antiga do sorriso');
     if (result.headingsOutside.length) errors.push(`título(s) fora do viewport: ${result.headingsOutside.join(' | ')}`);
     if (externalFonts.length) errors.push('fonte externa requisitada');
     if (current.name === 'mobile' && result.heroSource) errors.push('hero mobile baixou vídeo em vez de usar poster');
     if (current.name !== 'mobile' && !result.heroSource) errors.push('hero desktop/tablet não recebeu fonte de vídeo');
 
     if (current.name === 'mobile') {
+      if (result.journeyLayout.some((step) => !step.overlaps)) errors.push('jornada mobile: texto não está sobre a fotografia');
       if (result.menuDisplay === 'none') errors.push('botão do menu mobile não está visível');
       await page.locator('[data-menu-button]').click();
       if (await page.locator('[data-menu-button]').getAttribute('aria-expanded') !== 'true') errors.push('menu mobile não atualizou aria-expanded');
       await page.keyboard.press('Escape');
+    } else {
+      const alternates = result.journeyLayout.every((step, index) => index % 2 === 0 ? step.imageCenter < step.contentCenter : step.imageCenter > step.contentCenter);
+      if (!alternates) errors.push('jornada: alternância esquerda/direita incorreta');
     }
 
     try {
@@ -93,7 +147,7 @@ try {
     await page.screenshot({ path: screenshot, fullPage: true });
     await context.close();
     if (errors.length) throw new Error(`${current.name}: ${errors.join('; ')}`);
-    console.log(`${current.name}: ${result.innerWidth}px, mídia/diálogos/foco/fontes sem regressões, screenshot ${screenshot}`);
+    console.log(`${current.name}: ${result.innerWidth}px, CLS ${result.cls.toFixed(3)}, maior tarefa ${result.longestTask.toFixed(1)}ms, screenshot ${screenshot}`);
   }
 
   const reducedContext = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
@@ -101,12 +155,12 @@ try {
   await reducedPage.goto(baseUrl, { waitUntil: 'networkidle' });
   const reduced = await reducedPage.evaluate(() => ({
     heroSource: document.querySelector('[data-hero-video]').getAttribute('src') || '',
-    experienceControls: document.querySelector('[data-experience-video]').controls,
+    journeyStepsVisible: [...document.querySelectorAll('[data-journey-step]')].every((element) => getComputedStyle(element).opacity !== '0'),
     revealVisible: [...document.querySelectorAll('[data-reveal]')].every((element) => getComputedStyle(element).opacity !== '0')
   }));
   await reducedContext.close();
-  if (reduced.heroSource || !reduced.experienceControls || !reduced.revealVisible) throw new Error('reduced-motion: fallback de mídia ou conteúdo falhou');
-  console.log('reduced-motion: poster, controles e conteúdo visível confirmados');
+  if (reduced.heroSource || !reduced.journeyStepsVisible || !reduced.revealVisible) throw new Error('reduced-motion: fallback estático ou conteúdo falhou');
+  console.log('reduced-motion: poster e jornada estática completa confirmados');
 
   const dataSaverContext = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   await dataSaverContext.addInitScript(() => {
@@ -115,6 +169,7 @@ try {
   const dataSaverPage = await dataSaverContext.newPage();
   await dataSaverPage.goto(baseUrl, { waitUntil: 'networkidle' });
   if (await dataSaverPage.locator('[data-hero-video]').getAttribute('src')) throw new Error('economia de dados: vídeo da hero foi solicitado');
+  if (!await dataSaverPage.locator('[data-journey-step]').evaluateAll((steps) => steps.length === 4 && steps.every((step) => getComputedStyle(step).opacity !== '0'))) throw new Error('economia de dados: jornada completa não ficou visível');
   await dataSaverContext.close();
   console.log('economia de dados: hero estática confirmada');
 
@@ -125,6 +180,26 @@ try {
   await failurePage.locator('[data-hero-media].is-fallback').waitFor();
   await failureContext.close();
   console.log('falha de vídeo: poster de fallback confirmado');
+
+  const noScriptContext = await browser.newContext({ viewport: { width: 390, height: 844 }, javaScriptEnabled: false });
+  const noScriptPage = await noScriptContext.newPage();
+  await noScriptPage.goto(baseUrl, { waitUntil: 'networkidle' });
+  const noScriptJourney = await noScriptPage.locator('[data-journey-step]').evaluateAll((steps) => steps.length === 4 && steps.every((step) => getComputedStyle(step).opacity !== '0' && step.textContent.trim().length > 0));
+  await noScriptContext.close();
+  if (!noScriptJourney) throw new Error('JavaScript indisponível: conteúdo completo da jornada não ficou visível');
+  console.log('JavaScript indisponível: quatro painéis da jornada permanecem legíveis');
+
+  const imageFailureContext = await browser.newContext({ viewport: { width: 1440, height: 900 } });
+  const imageFailurePage = await imageFailureContext.newPage();
+  await imageFailurePage.route(/\/assets\/journey\/.+\.(?:avif|webp)$/, (route) => route.abort());
+  await imageFailurePage.goto(baseUrl, { waitUntil: 'networkidle' });
+  const failureReadable = await imageFailurePage.locator('[data-journey-step]').evaluateAll((steps) => steps.length === 4 && steps.every((step) => {
+    const copy = step.querySelector('.journey-step-copy');
+    return getComputedStyle(copy).color !== 'rgba(0, 0, 0, 0)' && copy.getBoundingClientRect().height > 0;
+  }));
+  if (!failureReadable) throw new Error('falha de imagem ocultou conteúdo da jornada');
+  await imageFailureContext.close();
+  console.log('falha de imagem: fundo escuro e quatro etapas legíveis');
 } finally {
   await browser.close();
 }
