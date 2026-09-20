@@ -67,19 +67,23 @@ seo_estado: confirmado
 | Hero | `media/Instagram/hero_1/hero_1.mp4` | confirmado | autorizado para a página |
 | Jornada | quatro fotografias de `media/home`: retrato do Dr. Mayson, recepção e dois consultórios | confirmado | acervo indicado pelo usuário para a seção; seleção aprovada por tópico nesta revisão |
 | Equipe | `media/funcionarios/` | confirmado | autorizado para a página |
-| Casos clínicos | oito conjuntos em `media/Instagram/` | bloqueado | preparar tecnicamente; não publicar sem autoria, CRO e TCLE por caso |
-| Símbolo | `media/Instagram/logo_1/logo_2.png` | confirmado | reconstrução vetorial fiel autorizada |
+| Comparativos de resultados | cinco comparativos em `media/Instagram/` | confirmado | publicação institucional autorizada pelo usuário, com razão social, CNPJ e aviso de variação individual |
+| Catálogo detalhado em vídeo | oito conjuntos em `media/Instagram/` | bloqueado | não publicar sem autoria profissional e CRO individuais |
+| Símbolo | `media/Instagram/logo_1/logo_2.svg` | confirmado | uso direto da arte oficial, removendo somente metadados e fundo técnico |
 
 ## Contatos confirmados
 
 - WhatsApp: +55 22 99815-5861.
 - Telefone: +55 22 3831-1733.
+- Telefone adicional: +55 22 99917-9701.
 - Endereço: Rua XV de Novembro, 360, Centro, Bom Jesus do Itabapoana — RJ, 28360-000.
 - Instagram: @centroodontomedico_.
 - Formulário sem chave externa: prepara o atendimento pelo WhatsApp, preservando nomes e ordem dos campos.
 
 ## Restrições
 
-- Casos clínicos permanecem ocultos até a regularização individual.
-- Sem domínio, analytics, serviço de formulário ou publicação externa nesta entrega.
+- Os cinco comparativos institucionais estão autorizados; o catálogo detalhado em vídeo permanece oculto até a regularização de profissional e CRO por item.
+- Protótipo autorizado para GitHub Pages, sem analytics, serviço externo de formulário ou indexação em buscadores.
 - `SITE_CONFIG` é a fonte única de contatos e mídia publicada.
+- Razão social: Centro Odontológico Muzi Ltda.; CNPJ 26.721.825/0001-99.
+- Footer e crédito: G&Ms Soluções Tecnológicas, com link para `https://gems.tec.br/`.

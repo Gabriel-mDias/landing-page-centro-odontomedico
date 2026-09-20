@@ -19,10 +19,6 @@ const heroMp4 = resolve(output, 'video/hero_1.mp4');
 ffmpeg(['-i', heroInput, '-t', '24', '-vf', 'scale=720:-2:force_original_aspect_ratio=decrease,fps=30', '-an', '-c:v', 'libx264', '-preset', 'slow', '-crf', '28', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', heroMp4], 'hero híbrida MP4');
 ffmpeg(['-ss', '2', '-i', heroMp4, '-frames:v', '1', '-q:v', '3', resolve(output, 'video/hero_1_poster.jpg')], 'poster da hero');
 
-const experienceInput = resolve(root, 'media/hero_animation/smile_animation.mp4');
-ffmpeg(['-i', experienceInput, '-vf', 'crop=720:640:0:280,fps=30', '-an', '-c:v', 'libx264', '-preset', 'slow', '-crf', '22', '-g', '1', '-keyint_min', '1', '-bf', '0', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', resolve(output, 'video/culture_smile_scrub.mp4')], 'vídeo de scrub do sorriso');
-ffmpeg(['-ss', '8.5', '-i', resolve(output, 'video/culture_smile_scrub.mp4'), '-frames:v', '1', '-q:v', '2', resolve(output, 'video/culture_smile_poster.jpg')], 'poster do sorriso');
-
 const cases = [
   ['clareamento-01', 'media/Instagram/clareamento_1/start_end_morph_video.mp4'],
   ['clareamento-02', 'media/Instagram/clareamento_2/clareamento_start_end_morph.mp4'],

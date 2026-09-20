@@ -1,7 +1,8 @@
 export const SITE_CONFIG = {
   brand: {
     name: 'Centro Odontomédico',
-    legalName: null,
+    legalName: 'Centro Odontológico Muzi Ltda.',
+    cnpj: '26.721.825/0001-99',
     niche: 'Odontologia multidisciplinar',
     city: 'Bom Jesus do Itabapoana',
     state: 'RJ'
@@ -12,6 +13,8 @@ export const SITE_CONFIG = {
     whatsappMessage: 'Olá! Conheci o Centro Odontomédico pelo site e gostaria de agendar uma consulta.',
     phone: '552238311733',
     phoneLabel: '(22) 3831-1733',
+    additionalPhone: '5522999179701',
+    additionalPhoneLabel: '(22) 99917-9701',
     address: 'Rua XV de Novembro, 360, Centro, Bom Jesus do Itabapoana - RJ, 28360-000',
     instagram: 'centroodontomedico_',
     instagramUrl: 'https://www.instagram.com/centroodontomedico_/',
@@ -33,5 +36,9 @@ export const SITE_CONFIG = {
     provider: 'whatsapp',
     accessKey: '',
     subject: 'Novo contato pelo site — Centro Odontomédico'
+  },
+  developer: {
+    name: 'G&Ms Soluções Tecnológicas',
+    url: 'https://gems.tec.br/'
   }
 };

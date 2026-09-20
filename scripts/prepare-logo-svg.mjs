@@ -14,8 +14,14 @@ let svg = fs.readFileSync(inputSvgPath, 'utf8');
 svg = svg.replace(/<path\s+style="fill:#fefefe"[^>]*id="path100"[^>]*\/>/i, '');
 
 // Also clean inkscape and sodipodi attributes that aren't needed for web rendering
-svg = svg.replace(/sodipodi:[a-z0-9-]+="[^"]*"/gi, '')
-         .replace(/inkscape:[a-z0-9-]+="[^"]*"/gi, '');
+svg = svg.replace(/<\?xml[^>]*>\s*/i, '')
+         .replace(/<!--[^]*?-->\s*/g, '')
+         .replace(/<sodipodi:namedview\b[^>]*(?:\/>|>[^]*?<\/sodipodi:namedview>)\s*/gi, '')
+         .replace(/<defs\b[^>]*(?:\/>|>\s*<\/defs>)\s*/gi, '')
+         .replace(/\s+xmlns:(?:inkscape|sodipodi|svg)="[^"]*"/gi, '')
+         .replace(/\s+(?:sodipodi|inkscape):[a-z0-9-]+="[^"]*"/gi, '')
+         .replace(/\s+(?:version|id|width|height)="[^"]*"/gi, '')
+         .replace(/[ \t]+$/gm, '');
 
 // Ensure viewBox is properly present (0 0 1254 1254)
 if (!svg.includes('viewBox="0 0 1254 1254"')) {

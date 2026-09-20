@@ -69,7 +69,7 @@ aprovado_em: 2026-09-19
 3. “Jornada do cuidado”: quatro painéis editoriais em zigue-zague, em fluxo normal, com fotografias derivadas de mídia própria autorizada.
 4. Especialidades em índice interativo.
 5. Equipe em carrossel de largura variável.
-6. Casos clínicos tecnicamente prontos, mas não renderizados enquanto incompletos.
+6. Cinco comparativos institucionais autorizados em Resultados; catálogo detalhado em vídeo não renderizado enquanto faltar profissional e CRO por item.
 7. FAQ.
 8. Contato.
 9. Footer.
@@ -115,8 +115,14 @@ A navegação permanece fora da contagem e conserva as âncoras `#hero`, `#jorna
 
 ## Casos clínicos
 
-O catálogo e os derivados MP4/WebM/poster serão entregues, mas a seção permanece oculta. Cada item exige autoria, CRO, confirmação de TCLE e `publication_state: ready` antes de poder ser habilitado. A validação de publicação recusa qualquer caso incompleto ou indiscriminadamente ativado.
+Os cinco comparativos estáticos da seção Resultados têm autorização confirmada pelo usuário e autoria institucional do Centro Odontológico Muzi Ltda., CNPJ 26.721.825/0001-99, acompanhados de aviso de variação individual. O catálogo detalhado e seus derivados MP4/WebM/poster permanecem ocultos: cada item exige profissional e CRO individuais antes de poder ser habilitado. A validação de publicação recusa qualquer item incompleto ou indiscriminadamente ativado.
+
+## Encerramento e conversão
+
+- Footer editorial com marca, descrição, links para todas as seções, WhatsApp, dois telefones, Instagram, endereço/Maps, razão social, CNPJ e crédito da desenvolvedora.
+- Botão flutuante de WhatsApp usa o mesmo número e mensagem de `SITE_CONFIG`, respeita safe area e se reduz ao ícone no mobile.
+- Publicação do protótipo em GitHub Pages aprovada; `noindex,nofollow` e `Disallow: /` permanecem obrigatórios.
 
 ## Aprovação formal
 
-A revisão editorial clínica, sua paleta, Manrope, frase central, hero híbrida, reconstrução fiel do símbolo, ordem de seções, CTA “Agendar Consulta” e a substituição da cena orbital pela jornada em zigue-zague foram aprovadas pelo usuário em 19/09/2026.
+A revisão editorial clínica, sua paleta, Manrope, frase central, hero híbrida, uso direto da arte vetorial oficial, ordem de seções, CTA “Agendar Consulta”, Resultados institucionais, footer editorial, botão flutuante e a substituição da cena orbital pela jornada em zigue-zague foram aprovados pelo usuário em 19/09/2026.

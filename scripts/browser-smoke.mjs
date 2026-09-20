@@ -73,11 +73,12 @@ try {
       await page.waitForTimeout(80);
     }
     await page.locator('#hero').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(120);
 
     const result = await page.evaluate(() => ({
       innerWidth: window.innerWidth,
       scrollWidth: document.documentElement.scrollWidth,
-      imagesBroken: [...document.images].filter((image) => image.currentSrc && image.getClientRects().length > 0 && (!image.complete || image.naturalWidth === 0)).length,
+      imagesBroken: [...document.images].filter((image) => image.currentSrc && image.getClientRects().length > 0 && (!image.complete || image.naturalWidth === 0)).map((image) => image.currentSrc),
       h1Count: document.querySelectorAll('h1').length,
       menuDisplay: getComputedStyle(document.querySelector('[data-menu-button]')).display,
       font: getComputedStyle(document.body).fontFamily,
@@ -105,11 +106,20 @@ try {
       headingsOutside: [...document.querySelectorAll('h1,h2')].filter((heading) => {
         const rect = heading.getBoundingClientRect();
         return rect.left < -1 || rect.right > window.innerWidth + 1;
-      }).map((heading) => heading.textContent.trim())
+      }).map((heading) => heading.textContent.trim()),
+      whatsapp: (() => {
+        const button = document.querySelector('.whatsapp-float');
+        const rect = button.getBoundingClientRect();
+        const footer = document.querySelector('.footer').getBoundingClientRect();
+        return { href: button.href, label: button.getAttribute('aria-label'), right: rect.right, bottom: rect.bottom, overlapsFooterContent: footer.top < window.innerHeight && rect.top < footer.bottom };
+      })(),
+      footerComplete: ['#hero', '#jornada', '#especialidades', '#resultados', '#equipe', '#duvidas', '#contato'].every((href) => document.querySelector(`.footer a[href="${href}"]`))
+        && document.querySelector('.footer').textContent.includes('26.721.825/0001-99')
+        && document.querySelector('.footer').textContent.includes('G&Ms Soluções Tecnológicas')
     }));
 
     if (result.scrollWidth > result.innerWidth) errors.push(`overflow horizontal: ${result.scrollWidth}px > ${result.innerWidth}px`);
-    if (result.imagesBroken) errors.push(`${result.imagesBroken} imagem(ns) quebrada(s)`);
+    if (result.imagesBroken.length) errors.push(`imagem(ns) quebrada(s): ${result.imagesBroken.join(', ')}`);
     if (result.h1Count !== 1) errors.push(`esperado 1 H1, encontrado ${result.h1Count}`);
     if (!result.manropeLoaded || !result.font.includes('Manrope')) errors.push('Manrope auto-hospedada não foi aplicada');
     if (!result.casesHidden) errors.push('casos clínicos incompletos foram renderizados');
@@ -123,6 +133,9 @@ try {
     if (result.longestTask > 50) errors.push(`tarefa longa durante a interação: ${result.longestTask.toFixed(1)}ms`);
     if (oldJourneyMedia.length) errors.push('jornada requisitou mídia antiga do sorriso');
     if (result.headingsOutside.length) errors.push(`título(s) fora do viewport: ${result.headingsOutside.join(' | ')}`);
+    if (!result.whatsapp.href.startsWith('https://wa.me/5522998155861?text=') || !result.whatsapp.label) errors.push('botão flutuante do WhatsApp não usa configuração ou rótulo acessível');
+    if (result.whatsapp.right > result.innerWidth + 1 || result.whatsapp.bottom > current.height + 1) errors.push('botão flutuante saiu do viewport');
+    if (!result.footerComplete) errors.push('footer final incompleto');
     if (externalFonts.length) errors.push('fonte externa requisitada');
     if (current.name === 'mobile' && result.heroSource) errors.push('hero mobile baixou vídeo em vez de usar poster');
     if (current.name !== 'mobile' && !result.heroSource) errors.push('hero desktop/tablet não recebeu fonte de vídeo');
@@ -142,6 +155,10 @@ try {
       await exerciseDialog(page, page.locator('[data-specialty]').first());
       await exerciseDialog(page, page.locator('[data-open-professional]').first());
     } catch (error) { errors.push(error.message); }
+
+    await page.locator('.footer').scrollIntoViewIfNeeded();
+    await page.waitForTimeout(120);
+    if (!await page.locator('.whatsapp-float').evaluate((element) => element.classList.contains('is-hidden'))) errors.push('botão flutuante sobrepõe contato/footer');
 
     const screenshot = join(tmpdir(), `centro-odontomedico-${current.name}.png`);
     await page.screenshot({ path: screenshot, fullPage: true });
