@@ -21,9 +21,9 @@ export const SITE_CONFIG = {
   media: {
     heroVideo: './assets/video/hero_1.mp4',
     heroPoster: './assets/video/hero_1_poster.jpg',
-    experienceVideo: './assets/video/hero_2_scrub.mp4',
-    experienceMobileVideo: './assets/video/hero_2.mp4',
-    experiencePoster: './assets/video/hero_2_poster.jpg',
+    experienceVideo: './assets/video/culture_smile_scrub.mp4',
+    experienceMobileVideo: './assets/video/culture_smile_scrub.mp4',
+    experiencePoster: './assets/video/culture_smile_poster.jpg',
     casesCatalog: './assets/cases/cases.json'
   },
   form: {
