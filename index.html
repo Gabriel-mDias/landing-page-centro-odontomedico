@@ -1,208 +1,379 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#183f3a">
-    <meta name="description" content="Template demonstrativo de landing page para clínica médica, com atendimento acolhedor e conversão por WhatsApp.">
-    <meta name="robots" content="noindex, nofollow">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:title" content="Clínica Aurora — template demonstrativo">
-    <meta property="og:description" content="Uma base reutilizável para páginas de clínicas e serviços profissionais.">
-    <meta property="og:image" content="./assets/images/hero-clinica.webp">
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <link rel="manifest" href="./site.webmanifest">
-    <title>Clínica Aurora — Cuidado médico com tempo e escuta</title>
-  </head>
-  <body>
-    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
-    <p class="demo-notice" role="note">Template demonstrativo: marca, profissionais, contatos e textos devem ser substituídos e aprovados antes da publicação.</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="author" content="G&amp;Ms Soluções Tecnológicas">
+  <title>Centro Odontomédico — Invista no seu sorriso!</title>
+  <meta name="description" content="Centro Odontomédico em Bom Jesus do Itabapoana. Mais de 19 anos e uma equipe multidisciplinar para cuidar do seu sorriso.">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta property="og:title" content="Centro Odontomédico — Invista no seu sorriso!">
+  <meta property="og:description" content="Odontologia multidisciplinar em Bom Jesus do Itabapoana.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://gabriel-mdias.github.io/landing-page-centro-odontomedico/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="manifest" href="./site.webmanifest">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Ir para o conteúdo principal</a>
 
-    <header class="site-header" data-header>
-      <div class="container nav">
-        <a class="brand" href="#inicio" aria-label="Clínica Aurora — início">
-          <img src="./assets/logo/aurora-symbol.svg" alt="" width="44" height="44">
-          <span>Clínica Aurora</span>
-        </a>
-        <button class="menu-button" type="button" aria-expanded="false" aria-controls="menu-principal" data-menu-button>Menu</button>
-        <nav class="nav__links" id="menu-principal" aria-label="Navegação principal" data-menu>
-          <a href="#sobre">A clínica</a>
-          <a href="#especialidades">Especialidades</a>
-          <a href="#jornada">Como funciona</a>
-          <a href="#duvidas">Dúvidas</a>
-          <a class="button button--primary" href="#contato">Agendar consulta</a>
-        </nav>
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="#hero" aria-label="Centro Odontomédico — início">
+        <img src="./assets/logo/logo-centro-odontomedico.svg" alt="" width="44" height="44">
+        <span><strong>Centro</strong> Odontomédico</span>
+      </a>
+      <nav class="main-nav" id="main-menu" data-menu aria-label="Navegação principal">
+        <a href="#hero">Início</a>
+        <a href="#jornada">A Clínica</a>
+        <a href="#especialidades">Especialidades</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#equipe">Corpo Clínico</a>
+        <a href="#duvidas">Dúvidas</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="button button--compact header-cta" data-contact="whatsapp" href="#contato">Agendar Consulta</a>
+      <button class="menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="main-menu">Menu</button>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-media" data-hero-media>
+        <video data-hero-video muted loop playsinline preload="none" poster="./assets/video/hero_1_poster.jpg" aria-hidden="true"></video>
       </div>
-    </header>
-
-    <main id="conteudo">
-      <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <div class="hero__media" aria-hidden="true">
-          <img src="./assets/images/hero-clinica.webp" alt="" width="1600" height="1100" fetchpriority="high" data-hero-image>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow" data-reveal>Odontologia multidisciplinar · Bom Jesus do Itabapoana</p>
+          <h1 id="hero-title" data-reveal>Invista no seu <span>sorriso.</span></h1>
+          <p class="hero-lead" data-reveal>Uma equipe reunida para compreender cada caso e organizar o cuidado com clareza, atenção e continuidade.</p>
+          <a class="button" data-contact="whatsapp" href="#contato" data-reveal>Agendar Consulta</a>
         </div>
-        <div class="container hero__content">
-          <div class="hero__copy" data-reveal>
-            <span class="eyebrow" style="color:#d7b5a5">Saúde integral · atendimento particular</span>
-            <h1 id="hero-title">Cuidado médico com <em>tempo, escuta e clareza.</em></h1>
-            <p>Uma experiência de saúde pensada para compreender você por inteiro — da primeira conversa ao acompanhamento contínuo.</p>
-            <div class="hero__actions">
-              <a class="button button--primary" href="#contato">Quero agendar</a>
-              <a class="button button--ghost hero__ghost" href="#especialidades">Conhecer especialidades</a>
-            </div>
-          </div>
-        </div>
-      </section>
+        <p class="hero-caption" data-reveal><strong>19+</strong><span>anos de história confirmada</span></p>
+      </div>
+    </section>
 
-      <aside aria-label="Compromissos de atendimento">
-        <ul class="container trust-list">
-          <li>Escuta sem pressa</li>
-          <li>Plano individual</li>
-          <li>Equipe integrada</li>
-          <li>Acompanhamento próximo</li>
-        </ul>
-      </aside>
+    <section class="proof-band" aria-label="Informações confirmadas">
+      <div class="container proof-grid">
+        <p><span>01</span><strong>Mais de 19 anos</strong><small>de atuação em Bom Jesus do Itabapoana</small></p>
+        <p><span>02</span><strong>11 profissionais</strong><small>no corpo clínico apresentado</small></p>
+        <p><span>03</span><strong>Cuidado integrado</strong><small>com diferentes áreas em um só endereço</small></p>
+      </div>
+    </section>
 
-      <section class="section" id="sobre" aria-labelledby="sobre-title">
-        <div class="container about-grid">
-          <div class="about-media" data-reveal>
-            <img src="./assets/images/acolhimento.webp" alt="Sala de espera clara e acolhedora; fotografia demonstrativa" width="900" height="1200" loading="lazy">
-            <img src="./assets/images/consultorio.webp" alt="Consultório médico moderno; fotografia demonstrativa" width="700" height="500" loading="lazy">
-          </div>
-          <div class="about-copy" data-reveal>
-            <span class="eyebrow">A Clínica Aurora</span>
-            <h2 id="sobre-title">Mais contexto para cuidar melhor.</h2>
-            <p>Acreditamos que um bom atendimento começa antes do diagnóstico: começa quando você se sente ouvido. Por isso, reunimos especialidades, informações e próximos passos em uma jornada simples.</p>
-            <p>Este conteúdo é demonstrativo. Em um projeto real, a história, os diferenciais e as evidências vêm do briefing e passam por aprovação do cliente.</p>
-            <div class="about-points">
-              <div class="about-point"><strong>Consultas mais humanas</strong><span>Tempo para dúvidas e decisões compartilhadas.</span></div>
-              <div class="about-point"><strong>Visão multidisciplinar</strong><span>Profissionais conectados ao mesmo plano de cuidado.</span></div>
-              <div class="about-point"><strong>Comunicação clara</strong><span>Orientações possíveis de compreender e seguir.</span></div>
-              <div class="about-point"><strong>Ambiente preparado</strong><span>Conforto, privacidade e acessibilidade.</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--white" id="especialidades" aria-labelledby="especialidades-title">
-        <div class="container">
-          <div class="section-heading" data-reveal>
-            <span class="eyebrow">Cuidado coordenado</span>
-            <h2 id="especialidades-title">Especialidades que conversam entre si.</h2>
-            <p>Cards reutilizáveis para apresentar serviços, linhas de cuidado, produtos ou soluções de qualquer nicho.</p>
-          </div>
-          <div class="swiper" data-specialties-carousel data-reveal>
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><article class="specialty-card"><span class="specialty-card__number">01 · Porta de entrada</span><h3>Clínica médica</h3><p>Avaliação ampla, prevenção e coordenação do cuidado.</p><ul><li>Check-up individual</li><li>Acompanhamento contínuo</li><li>Encaminhamentos claros</li></ul></article></div>
-              <div class="swiper-slide"><article class="specialty-card"><span class="specialty-card__number">02 · Bem-estar</span><h3>Nutrição</h3><p>Estratégias alimentares possíveis para a rotina e os objetivos.</p><ul><li>Avaliação nutricional</li><li>Plano personalizado</li><li>Educação alimentar</li></ul></article></div>
-              <div class="swiper-slide"><article class="specialty-card"><span class="specialty-card__number">03 · Movimento</span><h3>Fisioterapia</h3><p>Recuperação funcional com metas construídas em conjunto.</p><ul><li>Prevenção de lesões</li><li>Reabilitação</li><li>Qualidade de movimento</li></ul></article></div>
-              <div class="swiper-slide"><article class="specialty-card"><span class="specialty-card__number">04 · Saúde emocional</span><h3>Psicologia</h3><p>Um espaço seguro para compreender emoções e escolhas.</p><ul><li>Acolhimento individual</li><li>Estratégias de cuidado</li><li>Acompanhamento ético</li></ul></article></div>
-            </div>
-          </div>
-          <div class="carousel-controls">
-            <button class="carousel-button" type="button" aria-label="Especialidade anterior" data-carousel-prev>←</button>
-            <button class="carousel-button" type="button" aria-label="Próxima especialidade" data-carousel-next>→</button>
-            <div aria-label="Paginação das especialidades" data-carousel-pagination></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="experience-grid" id="jornada" aria-labelledby="jornada-title">
-        <img src="./assets/images/consulta.webp" alt="Profissional de saúde em conversa; fotografia demonstrativa, sem vínculo com a marca" width="1100" height="900" loading="lazy">
-        <div class="experience-copy" data-reveal>
-          <span class="eyebrow">Sua jornada</span>
-          <h2 id="jornada-title">Do primeiro contato ao acompanhamento.</h2>
-          <ol>
-            <li><strong>Conte o que você precisa.</strong><br>WhatsApp ou formulário com os dados essenciais.</li>
-            <li><strong>Escolha o melhor horário.</strong><br>A equipe confirma profissional, modalidade e orientações.</li>
-            <li><strong>Tenha uma consulta completa.</strong><br>Escuta, avaliação e próximos passos compreensíveis.</li>
-            <li><strong>Continue acompanhado.</strong><br>Retornos e ajustes conforme a evolução do cuidado.</li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="section section--dark" aria-labelledby="processo-title">
-        <div class="container">
-          <div class="section-heading" data-reveal>
-            <span class="eyebrow" style="color:#d7b5a5">Método de atendimento</span>
-            <h2 id="processo-title">Clareza em cada etapa.</h2>
-          </div>
-          <ol class="process-list" data-reveal>
-            <li><h3>Escuta</h3><p>Contexto, histórico e prioridades.</p></li>
-            <li><h3>Avaliação</h3><p>Investigação responsável e integrada.</p></li>
-            <li><h3>Plano</h3><p>Orientações e decisões compartilhadas.</p></li>
-            <li><h3>Evolução</h3><p>Acompanhamento e ajustes possíveis.</p></li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="equipe-title">
-        <div class="container team-grid">
-          <div data-reveal>
-            <span class="eyebrow">Equipe e autoridade</span>
-            <h2 id="equipe-title">Um espaço pronto para apresentar quem cuida.</h2>
-            <p>No projeto de cada cliente, esta seção recebe nomes, especialidades, registros profissionais, minibios, fotos autorizadas e perfis sociais. O template não inventa credenciais nem usa pessoas de banco de imagem como equipe real.</p>
-            <a class="button button--ghost" href="#contato">Falar com a equipe</a>
-          </div>
-          <div class="team-image" data-reveal>
-            <img src="./assets/images/consultorio.webp" alt="Consultório demonstrativo sem identificação de uma clínica real" width="1000" height="800" loading="lazy">
-            <span class="media-label">Fotografia demonstrativa · Pexels</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--white" id="duvidas" aria-labelledby="duvidas-title">
-        <div class="container">
-          <div class="section-heading" data-reveal>
-            <span class="eyebrow">Dúvidas frequentes</span>
-            <h2 id="duvidas-title">Informação antes da decisão.</h2>
-          </div>
-          <div class="faq" data-reveal>
-            <details><summary>Como funciona o primeiro atendimento?</summary><p>A equipe entende a sua necessidade, orienta a especialidade adequada e confirma disponibilidade, modalidade e valores antes do agendamento.</p></details>
-            <details><summary>A clínica atende por convênio?</summary><p>Este é um texto demonstrativo. Informe apenas convênios confirmados e mantenha a lista atualizada; quando não houver cobertura direta, explique política de recibo e reembolso.</p></details>
-            <details><summary>Posso agendar pelo WhatsApp?</summary><p>Sim. Os botões usam uma mensagem inicial configurável e levam o visitante ao número oficial cadastrado em <code>src/config/site.js</code>.</p></details>
-            <details><summary>Onde a clínica está localizada?</summary><p>Substitua cidade, endereço e link do mapa pelos dados confirmados do cliente. Nunca deduza ou publique endereço residencial.</p></details>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section--dark" id="contato" aria-labelledby="contato-title">
-        <div class="container contact-grid">
-          <div data-reveal>
-            <span class="eyebrow" style="color:#d7b5a5">Vamos conversar?</span>
-            <h2 id="contato-title">Seu cuidado pode começar com uma mensagem.</h2>
-            <p>Preencha os dados essenciais. Enquanto a integração de e-mail não estiver configurada, o formulário abre o WhatsApp com a mensagem pronta.</p>
-            <div class="contact-channels">
-              <a href="#" data-contact="whatsapp"><span data-contact="whatsapp-label">(27) 99999-9999</span> · WhatsApp</a>
-              <a href="#" data-contact="email"><span data-contact="email-label">contato@clinicaaurora.example</span></a>
-              <a href="#" data-contact="instagram"><span data-contact="instagram-label">@clinicaaurora.exemplo</span> · Instagram</a>
-              <a href="#" data-contact="maps">Vitória · Espírito Santo</a>
-            </div>
-          </div>
-          <form class="contact-form" data-contact-form data-reveal>
-            <div class="honeypot" aria-hidden="true"><label>Não preencha <input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
-            <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" autocomplete="name" required></div>
-            <div class="field"><label for="telefone">Telefone</label><input id="telefone" name="telefone" type="tel" autocomplete="tel" required></div>
-            <div class="field field--full"><label for="interesse">Como podemos ajudar?</label><select id="interesse" name="interesse" required><option value="">Selecione</option><option>Agendar uma consulta</option><option>Conhecer especialidades</option><option>Falar com a equipe</option><option>Outro assunto</option></select></div>
-            <div class="field field--full"><label for="mensagem">Mensagem (opcional)</label><textarea id="mensagem" name="mensagem" rows="4"></textarea></div>
-            <div class="field--full"><button class="button button--light" type="submit">Enviar contato</button></div>
-            <p class="form-status field--full" role="status" aria-live="polite" data-form-status></p>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
+    <section class="journey" id="jornada" aria-labelledby="journey-title" data-journey>
       <div class="container">
-        <div class="footer__grid">
-          <div><a class="brand" href="#inicio"><img src="./assets/logo/aurora-symbol.svg" alt="" width="44" height="44">Clínica Aurora</a><p>Template genérico para serviços de saúde e negócios profissionais.</p></div>
-          <div><h2>Navegação</h2><a href="#sobre">A clínica</a><a href="#especialidades">Especialidades</a><a href="#jornada">Jornada</a><a href="#duvidas">Dúvidas</a></div>
-          <div><h2>Contato</h2><a href="#" data-contact="whatsapp">WhatsApp</a><a href="#" data-contact="email">E-mail</a><a href="#" data-contact="instagram">Instagram</a></div>
-        </div>
-        <div class="footer__bottom">© <span data-current-year></span> Clínica Aurora · Demonstração sem vínculo com uma empresa real.</div>
-      </div>
-    </footer>
+        <header class="journey-intro">
+          <p class="eyebrow">A jornada do cuidado</p>
+          <h2 id="journey-title">Tudo começa quando você é ouvido.</h2>
+        </header>
 
-    <script type="module" src="/src/js/main.js"></script>
-  </body>
+        <div class="journey-steps">
+          <article class="journey-step" data-journey-step="0" data-reveal>
+            <picture class="journey-step-image"><source srcset="./assets/journey/escuta.avif" type="image/avif"><img src="./assets/journey/escuta.webp" alt="Dr. Mayson em retrato atento no Centro Odontomédico" width="720" height="540" loading="lazy" decoding="async"></picture>
+            <div class="journey-step-content">
+              <p class="journey-step-meta"><span>01</span><small>Presença</small></p>
+              <div class="journey-step-copy"><h3>Escuta</h3><p>Antes de qualquer decisão, há espaço para entender sua história, suas prioridades e suas dúvidas.</p></div>
+            </div>
+          </article>
+          <article class="journey-step" data-journey-step="1" data-reveal>
+            <picture class="journey-step-image"><source srcset="./assets/journey/direcionamento.avif" type="image/avif"><img src="./assets/journey/direcionamento.webp" alt="Recepção do Centro Odontomédico, ponto inicial de orientação para o atendimento" width="720" height="540" loading="lazy" decoding="async"></picture>
+            <div class="journey-step-content">
+              <p class="journey-step-meta"><span>02</span><small>Clareza</small></p>
+              <div class="journey-step-copy"><h3>Direcionamento</h3><p>Sua necessidade encontra a área do corpo clínico mais adequada para iniciar o cuidado.</p></div>
+            </div>
+          </article>
+          <article class="journey-step" data-journey-step="2" data-reveal>
+            <picture class="journey-step-image"><source srcset="./assets/journey/integracao.avif" type="image/avif"><img src="./assets/journey/integracao.webp" alt="Consultório do Centro Odontomédico com áreas de conversa e atendimento integradas" width="720" height="540" loading="lazy" decoding="async"></picture>
+            <div class="journey-step-content">
+              <p class="journey-step-meta"><span>03</span><small>Integração</small></p>
+              <div class="journey-step-copy"><h3>Cuidado integrado</h3><p>Quando diferentes especialidades participam, a equipe aproxima perspectivas para manter a jornada coerente.</p></div>
+            </div>
+          </article>
+          <article class="journey-step" data-journey-step="3" data-reveal>
+            <picture class="journey-step-image"><source srcset="./assets/journey/continuidade.avif" type="image/avif"><img src="./assets/journey/continuidade.webp" alt="Consultório preparado para dar continuidade ao cuidado no Centro Odontomédico" width="720" height="540" loading="lazy" decoding="async"></picture>
+            <div class="journey-step-content">
+              <p class="journey-step-meta"><span>04</span><small>Responsabilidade</small></p>
+              <div class="journey-step-copy"><h3>Continuidade</h3><p>Orientação e acompanhamento mantêm cada etapa compreensível, do primeiro contato aos próximos cuidados.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section specialties" id="especialidades" aria-labelledby="specialties-title">
+      <div class="container">
+        <header class="section-heading" data-reveal>
+          <p class="eyebrow">Especialidades</p>
+          <h2 id="specialties-title">Um índice clínico para encontrar o cuidado certo.</h2>
+          <p>Explore as áreas apresentadas pelo corpo clínico. Os detalhes indicam profissionais relacionados a cada atendimento.</p>
+        </header>
+        <div class="specialties-layout" data-specialties>
+          <div class="specialties-index" id="specialties-index"></div>
+          <aside class="specialty-preview" id="specialty-preview" aria-live="polite"></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dental-result" id="resultados" aria-labelledby="results-title">
+      <div class="container">
+        <header class="section-heading" data-reveal>
+          <p class="eyebrow">Resultados</p>
+          <h2 id="results-title">Transformações que você pode ver.</h2>
+          <p>Arraste para comparar o antes e o depois.</p>
+        </header>
+
+        <div class="before-after__tabs" role="tablist" aria-label="Casos clínicos disponíveis" data-before-after-tabs>
+          <button
+            type="button"
+            class="before-after__tab is-active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="before-after-display"
+            id="tab-case-1"
+            data-case-id="clareamento-1"
+            data-antes-src="./assets/images/clareamento-antes.webp"
+            data-depois-src="./assets/images/clareamento-depois.webp"
+            data-antes-alt="Sorriso antes do clareamento dental - Caso 01"
+            data-depois-alt="Sorriso após o clareamento dental - Caso 01"
+            data-aspect="landscape"
+          >
+            Clareamento 01
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-2"
+            data-case-id="clareamento-2"
+            data-antes-src="./assets/images/clareamento-2-antes.webp"
+            data-depois-src="./assets/images/clareamento-2-depois.webp"
+            data-antes-alt="Sorriso antes do clareamento dental - Caso 02"
+            data-depois-alt="Sorriso após o clareamento dental - Caso 02"
+            data-aspect="portrait"
+          >
+            Clareamento 02
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-3"
+            data-case-id="preenchimento-labial-1"
+            data-antes-src="./assets/images/preenchimento-labial-1-antes.webp"
+            data-depois-src="./assets/images/preenchimento-labial-1-depois.webp"
+            data-antes-alt="Lábios antes do preenchimento labial - Caso 01"
+            data-depois-alt="Lábios após o preenchimento labial - Caso 01"
+            data-aspect="panoramic"
+          >
+            Preenchimento Labial 01
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-4"
+            data-case-id="preenchimento-labial-2"
+            data-antes-src="./assets/images/preenchimento-labial-2-antes.webp"
+            data-depois-src="./assets/images/preenchimento-labial-2-depois.webp"
+            data-antes-alt="Lábios antes do preenchimento labial - Caso 02"
+            data-depois-alt="Lábios após o preenchimento labial - Caso 02"
+            data-aspect="panoramic"
+          >
+            Preenchimento Labial 02
+          </button>
+          <button
+            type="button"
+            class="before-after__tab"
+            role="tab"
+            aria-selected="false"
+            aria-controls="before-after-display"
+            id="tab-case-5"
+            data-case-id="rinomodelacao-1"
+            data-antes-src="./assets/images/rinomodelacao-antes.webp"
+            data-depois-src="./assets/images/rinomodelacao-depois.webp"
+            data-antes-alt="Perfil nasal antes da rinomodelação"
+            data-depois-alt="Perfil nasal após a rinomodelação"
+            data-aspect="portrait"
+          >
+            Rinomodelação
+          </button>
+        </div>
+
+        <div class="before-after" id="before-after-display" data-before-after tabindex="-1">
+          <!-- Imagem base (à direita): DEPOIS -->
+          <img
+            class="before-after__image before-after__image--base"
+            data-image-base
+            src="./assets/images/clareamento-depois.webp"
+            alt="Sorriso após o clareamento dental - Caso 01"
+            width="1448"
+            height="1086"
+            loading="lazy"
+            draggable="false"
+          >
+
+          <!-- Imagem revelada à esquerda com clip-path: ANTES -->
+          <img
+            class="before-after__image before-after__image--reveal"
+            data-image-reveal
+            src="./assets/images/clareamento-antes.webp"
+            alt="Sorriso antes do clareamento dental - Caso 01"
+            width="1448"
+            height="1086"
+            loading="lazy"
+            draggable="false"
+          >
+
+          <!-- Badges de identificação -->
+          <span class="before-after__label before-after__label--before" aria-hidden="true">Antes</span>
+          <span class="before-after__label before-after__label--after" aria-hidden="true">Depois</span>
+
+          <!-- Controle interativo -->
+          <div
+            class="before-after__handle"
+            role="slider"
+            tabindex="0"
+            aria-label="Comparar antes e depois"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="50"
+          >
+            <div class="before-after__line" aria-hidden="true"></div>
+            <div class="before-after__button" aria-hidden="true">
+              <svg class="before-after__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+              <svg class="before-after__arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <p class="dental-result__disclaimer">
+          Casos institucionais do Centro Odontológico Muzi Ltda. — CNPJ 26.721.825/0001-99. Resultados individuais; os efeitos podem variar conforme cada caso clínico.
+        </p>
+      </div>
+    </section>
+
+    <section class="section team" id="equipe" aria-labelledby="team-title">
+      <div class="container team-heading" data-reveal>
+        <div class="section-heading">
+          <p class="eyebrow">Corpo clínico</p>
+          <h2 id="team-title">Diferentes formações. Um cuidado conectado.</h2>
+          <p>Conheça as áreas de atuação apresentadas por cada profissional.</p>
+        </div>
+        <div class="carousel-controls" aria-label="Controles do carrossel">
+          <button type="button" data-team-prev aria-label="Profissional anterior">←</button>
+          <button type="button" data-team-next aria-label="Próximo profissional">→</button>
+        </div>
+      </div>
+      <div class="container team-rail-wrap">
+        <div class="swiper team-carousel" data-team-carousel>
+          <div class="swiper-wrapper" id="team-wrapper"></div>
+          <div class="swiper-pagination" data-team-pagination></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cases" id="casos" aria-labelledby="cases-title" hidden data-cases-section>
+      <div class="container">
+        <header class="section-heading">
+          <p class="eyebrow">Casos clínicos</p>
+          <h2 id="cases-title">Histórias documentadas com responsabilidade.</h2>
+        </header>
+        <div class="cases-rail" data-cases-list></div>
+      </div>
+    </section>
+
+    <section class="section faq-section" id="duvidas" aria-labelledby="faq-title">
+      <div class="container faq-layout">
+        <header class="section-heading" data-reveal>
+          <p class="eyebrow">Dúvidas</p>
+          <h2 id="faq-title">Antes da primeira conversa.</h2>
+          <p>Respostas diretas sobre contato, encaminhamento e áreas atendidas.</p>
+        </header>
+        <div class="faq" data-reveal>
+          <details><summary>Como faço o primeiro agendamento?<span>+</span></summary><p>Use o WhatsApp para informar sua necessidade. A equipe orientará o agendamento inicial.</p></details>
+          <details><summary>Como escolho a especialidade?<span>+</span></summary><p>Se você ainda não souber qual área procurar, descreva sua necessidade no contato. A equipe poderá direcionar o primeiro atendimento.</p></details>
+          <details><summary>Quais áreas aparecem no corpo clínico?<span>+</span></summary><p>O catálogo reúne áreas como cirurgia bucomaxilofacial, implantodontia, ortodontia, endodontia, prótese, dentística, odontopediatria, radiologia oral, harmonização orofacial e anestesiologia.</p></details>
+          <details><summary>Onde fica o Centro Odontomédico?<span>+</span></summary><p data-contact="address">Rua XV de Novembro, 360, Centro, Bom Jesus do Itabapoana - RJ, 28360-000.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contato" aria-labelledby="contact-title">
+      <div class="container contact-layout">
+        <div class="contact-copy" data-reveal>
+          <p class="eyebrow">Contato</p>
+          <h2 id="contact-title">Sua conversa começa por aqui.</h2>
+          <p>Preencha os dados para preparar uma mensagem no WhatsApp. Nenhuma informação é enviada a serviço externo pelo formulário.</p>
+          <dl class="contact-list">
+            <div><dt>WhatsApp</dt><dd><a data-contact="whatsapp" data-contact-label="whatsapp" href="#">(22) 99815-5861</a></dd></div>
+            <div><dt>Telefone</dt><dd><a data-contact="phone" data-contact-label="phone" href="#">(22) 3831-1733</a></dd></div>
+            <div><dt>Telefone adicional</dt><dd><a data-contact="additional-phone" data-contact-label="additional-phone" href="#">(22) 99917-9701</a></dd></div>
+            <div><dt>Endereço</dt><dd><a data-contact="maps" data-contact-label="address" href="#" target="_blank" rel="noopener">Rua XV de Novembro, 360, Centro, Bom Jesus do Itabapoana - RJ</a></dd></div>
+            <div><dt>Instagram</dt><dd><a data-contact="instagram" data-contact-label="instagram" href="#" target="_blank" rel="noopener">@centroodontomedico_</a></dd></div>
+          </dl>
+        </div>
+        <form class="contact-form" data-contact-form data-reveal>
+          <div class="honeypot" aria-hidden="true"><label>Não preencha <input name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+          <div class="form-field"><label for="nome">Nome completo</label><input id="nome" name="nome" autocomplete="name" required></div>
+          <div class="form-field"><label for="telefone">WhatsApp / telefone</label><input id="telefone" name="telefone" type="tel" autocomplete="tel" required></div>
+          <div class="form-field"><label for="interesse">Especialidade ou procedimento de interesse</label><select id="interesse" name="interesse"><option value="">Selecione (opcional)</option><option>Implantodontia e cirurgia</option><option>Ortodontia</option><option>Harmonização orofacial</option><option>Endodontia</option><option>Prótese e dentística</option><option>Odontopediatria</option><option>Avaliação inicial</option></select></div>
+          <button class="button" type="submit">Agendar Consulta</button>
+          <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-main">
+      <div class="footer-brand">
+        <a class="brand" href="#hero" aria-label="Centro Odontomédico — início"><img src="./assets/logo/logo-centro-odontomedico.svg" alt="" width="54" height="54"><span><strong>Centro</strong> Odontomédico</span></a>
+        <p>Odontologia multidisciplinar com escuta, clareza e continuidade em Bom Jesus do Itabapoana — RJ.</p>
+      </div>
+      <nav class="footer-column" aria-label="Navegação do rodapé">
+        <p class="footer-label">Navegue</p>
+        <a href="#hero">Início</a><a href="#jornada">Jornada</a><a href="#especialidades">Especialidades</a><a href="#resultados">Resultados</a><a href="#equipe">Corpo Clínico</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
+      </nav>
+      <div class="footer-column footer-contact">
+        <p class="footer-label">Fale conosco</p>
+        <a data-contact="whatsapp" data-contact-label="whatsapp" href="#">(22) 99815-5861</a>
+        <a data-contact="phone" data-contact-label="phone" href="#">(22) 3831-1733</a>
+        <a data-contact="additional-phone" data-contact-label="additional-phone" href="#">(22) 99917-9701</a>
+        <a data-contact="instagram" data-contact-label="instagram" href="#" target="_blank" rel="noopener">@centroodontomedico_</a>
+        <a data-contact="maps" data-contact-label="address" href="#" target="_blank" rel="noopener">Rua XV de Novembro, 360, Centro, Bom Jesus do Itabapoana — RJ</a>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span data-current-year></span> <span data-brand="legal-name">Centro Odontológico Muzi Ltda.</span> — CNPJ <span data-brand="cnpj">26.721.825/0001-99</span></p>
+      <p>Desenvolvido por <a data-developer="link" href="https://gems.tec.br/" target="_blank" rel="noopener"><span data-developer="name">G&amp;Ms Soluções Tecnológicas</span></a></p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" data-contact="whatsapp" href="#contato" aria-label="Agendar consulta pelo WhatsApp">
+    <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M12 2a9.6 9.6 0 0 0-8.33 14.38L2.4 21.06l4.79-1.25A9.6 9.6 0 1 0 12 2Zm0 17.45a7.8 7.8 0 0 1-3.98-1.09l-.29-.17-2.84.74.76-2.77-.19-.29A7.84 7.84 0 1 1 12 19.45Zm4.3-5.87c-.24-.12-1.4-.69-1.62-.77-.22-.08-.38-.12-.54.12-.16.24-.61.77-.75.93-.14.16-.28.18-.52.06-.24-.12-1-.37-1.91-1.18a7.16 7.16 0 0 1-1.32-1.64c-.14-.24-.01-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.63.3-.22.24-.83.81-.83 1.98s.85 2.3.97 2.46c.12.16 1.67 2.55 4.05 3.58.57.24 1.01.39 1.35.5.57.18 1.08.15 1.49.09.45-.07 1.4-.57 1.6-1.13.2-.55.2-1.03.14-1.13-.06-.1-.22-.16-.46-.28Z"/></svg>
+    <span>Agendar pelo WhatsApp</span>
+  </a>
+
+  <dialog class="detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
+    <div class="dialog-shell">
+      <button class="dialog-close" type="button" data-dialog-close aria-label="Fechar detalhes">×</button>
+      <div class="dialog-content" data-dialog-content></div>
+    </div>
+  </dialog>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
 </html>

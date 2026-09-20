@@ -5,73 +5,47 @@ function whatsappUrl(message = SITE_CONFIG.contact.whatsappMessage) {
 }
 
 export function initContact() {
-  document.querySelectorAll('[data-contact="whatsapp"]').forEach((link) => {
-    link.href = whatsappUrl();
-  });
-  document.querySelectorAll('[data-contact="whatsapp-label"]').forEach((element) => {
-    element.textContent = SITE_CONFIG.contact.whatsappLabel;
-  });
-  document.querySelectorAll('[data-contact="email"]').forEach((link) => {
-    link.href = `mailto:${SITE_CONFIG.contact.email}`;
-  });
-  document.querySelectorAll('[data-contact="email-label"]').forEach((element) => {
-    element.textContent = SITE_CONFIG.contact.email;
-  });
-  document.querySelectorAll('[data-contact="instagram"]').forEach((link) => {
-    link.href = SITE_CONFIG.contact.instagramUrl;
-  });
-  document.querySelectorAll('[data-contact="instagram-label"]').forEach((element) => {
-    element.textContent = `@${SITE_CONFIG.contact.instagram}`;
-  });
-  document.querySelectorAll('[data-contact="maps"]').forEach((link) => {
-    link.href = SITE_CONFIG.contact.mapsUrl;
-  });
-
+  document.querySelectorAll('[data-contact="whatsapp"]').forEach((link) => { link.href = whatsappUrl(); });
+  document.querySelectorAll('[data-contact="phone"]').forEach((link) => { link.href = `tel:+${SITE_CONFIG.contact.phone}`; });
+  document.querySelectorAll('[data-contact="additional-phone"]').forEach((link) => { link.href = `tel:+${SITE_CONFIG.contact.additionalPhone}`; });
+  document.querySelectorAll('[data-contact="instagram"]').forEach((link) => { link.href = SITE_CONFIG.contact.instagramUrl; });
+  document.querySelectorAll('[data-contact="maps"]').forEach((link) => { link.href = SITE_CONFIG.contact.mapsUrl; });
+  document.querySelectorAll('[data-contact="address"]').forEach((element) => { element.textContent = SITE_CONFIG.contact.address; });
+  document.querySelectorAll('[data-contact-label="whatsapp"]').forEach((element) => { element.textContent = SITE_CONFIG.contact.whatsappLabel; });
+  document.querySelectorAll('[data-contact-label="phone"]').forEach((element) => { element.textContent = SITE_CONFIG.contact.phoneLabel; });
+  document.querySelectorAll('[data-contact-label="additional-phone"]').forEach((element) => { element.textContent = SITE_CONFIG.contact.additionalPhoneLabel; });
+  document.querySelectorAll('[data-contact-label="address"]').forEach((element) => { element.textContent = SITE_CONFIG.contact.address; });
+  document.querySelectorAll('[data-contact-label="instagram"]').forEach((element) => { element.textContent = `@${SITE_CONFIG.contact.instagram}`; });
+  document.querySelectorAll('[data-brand="legal-name"]').forEach((element) => { element.textContent = SITE_CONFIG.brand.legalName; });
+  document.querySelectorAll('[data-brand="cnpj"]').forEach((element) => { element.textContent = SITE_CONFIG.brand.cnpj; });
+  document.querySelectorAll('[data-developer="name"]').forEach((element) => { element.textContent = SITE_CONFIG.developer.name; });
+  document.querySelectorAll('[data-developer="link"]').forEach((element) => { element.href = SITE_CONFIG.developer.url; });
   const year = document.querySelector('[data-current-year]');
   if (year) year.textContent = String(new Date().getFullYear());
 
-  const form = document.querySelector('[data-contact-form]');
-  const status = document.querySelector('[data-form-status]');
-  const submit = form?.querySelector('button[type="submit"]');
-  if (!form || !status || !submit) return;
+  const floatingButton = document.querySelector('.whatsapp-float');
+  const floatingObstructions = document.querySelectorAll('.contact, .footer');
+  if (floatingButton && floatingObstructions.length && 'IntersectionObserver' in window) {
+    const visibleObstructions = new Set();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.isIntersecting ? visibleObstructions.add(entry.target) : visibleObstructions.delete(entry.target));
+      floatingButton.classList.toggle('is-hidden', visibleObstructions.size > 0);
+    }, { threshold: 0.08 });
+    floatingObstructions.forEach((element) => observer.observe(element));
+  }
 
-  form.addEventListener('submit', async (event) => {
+  const form = document.querySelector('[data-contact-form]');
+  const status = form?.querySelector('[data-form-status]');
+  if (!form || !status) return;
+  form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
-
     const data = Object.fromEntries(new FormData(form).entries());
     if (data.botcheck) return;
-
-    if (!SITE_CONFIG.form.accessKey) {
-      const message = `Olá! Meu nome é ${data.nome}. Gostaria de conversar sobre ${data.interesse}. Telefone: ${data.telefone}.`;
-      status.textContent = 'Abrindo o WhatsApp para concluir seu contato…';
-      window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer');
-      return;
-    }
-
-    submit.disabled = true;
-    status.textContent = 'Enviando…';
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          ...data,
-          access_key: SITE_CONFIG.form.accessKey,
-          subject: SITE_CONFIG.form.subject,
-          from_name: SITE_CONFIG.brand.name
-        })
-      });
-      const result = await response.json();
-      if (!result.success) throw new Error(result.message || 'Falha no envio');
-      form.reset();
-      status.textContent = 'Mensagem recebida. Entraremos em contato em breve.';
-      status.dataset.state = 'success';
-    } catch {
-      status.textContent = 'Não foi possível enviar agora. Use o WhatsApp ou tente novamente.';
-      status.dataset.state = 'error';
-    } finally {
-      submit.disabled = false;
-    }
+    const interest = data.interesse || 'uma avaliação inicial';
+    const message = `Olá! Meu nome é ${data.nome}. Gostaria de agendar uma consulta sobre ${interest}. Meu telefone é ${data.telefone}.`;
+    status.dataset.state = '';
+    status.textContent = 'Abrindo o WhatsApp para concluir o agendamento…';
+    window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer');
   });
 }

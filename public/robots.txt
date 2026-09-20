@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: /
 
-# Template demonstrativo. Troque por Allow: / somente após aprovação para produção.
+# Protótipo público sem autorização para indexação. Manter bloqueado até aprovação explícita.

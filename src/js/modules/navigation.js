@@ -7,29 +7,27 @@ export function initNavigation(lenis) {
     menu?.removeAttribute('data-open');
     button?.setAttribute('aria-expanded', 'false');
   };
-
-  const updateHeader = () => header?.classList.toggle('is-scrolled', window.scrollY > 16);
-  window.addEventListener('scroll', updateHeader, { passive: true });
+  const updateHeader = () => header?.classList.toggle('is-scrolled', scrollY > 12);
+  addEventListener('scroll', updateHeader, { passive: true });
   updateHeader();
 
   button?.addEventListener('click', () => {
-    const opening = menu?.getAttribute('data-open') !== 'true';
+    const opening = !menu?.hasAttribute('data-open');
     menu?.toggleAttribute('data-open', opening);
     button.setAttribute('aria-expanded', String(opening));
   });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') close();
-  });
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); });
 
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (event) => {
-      const target = document.querySelector(link.getAttribute('href'));
+      const selector = link.getAttribute('href');
+      if (!selector || selector === '#') return;
+      const target = document.querySelector(selector);
       if (!target) return;
       event.preventDefault();
       close();
-      if (lenis) lenis.scrollTo(target, { offset: -72, duration: 1 });
-      else target.scrollIntoView({ behavior: 'smooth' });
+      if (lenis) lenis.scrollTo(target, { offset: -68, duration: .9 });
+      else target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
     });
   });
 }
