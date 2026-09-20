@@ -64,7 +64,6 @@ export async function initProfessionalPreview() {
             <img class="team-card__image" src="./assets/team/${encodeURIComponent(person.imagem)}" alt="${escapeHtml(person.nome_exibicao)}" loading="lazy" width="520" height="650">
             <button class="team-card__action" type="button" data-open-professional="${escapeHtml(person.id)}" aria-label="Ver perfil: ${escapeHtml(person.nome_exibicao)}">
               <svg width="20" height="20" viewBox="0 0 256 256" fill="none" aria-hidden="true"><path d="M128 56C48 56 16 128 16 128s32 72 112 72 112-72 112-72-32-72-112-72Z" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/><circle cx="128" cy="128" r="32" stroke="currentColor" stroke-width="16"/></svg>
-              <span class="team-card__action-text">Ver perfil</span>
             </button>
           </div>
           <div class="team-card__content"><span class="team-card__index">${String(index + 1).padStart(2, '0')}</span><h3 class="team-card__name">${escapeHtml(person.nome_exibicao)}</h3><p class="team-card__role">${escapeHtml(person.funcoes[0])}</p></div>
